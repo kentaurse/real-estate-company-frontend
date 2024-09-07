@@ -9,16 +9,14 @@ import { Avatar, Badge, Button, Drawer, Input, Typography } from 'antd';
 const { Text } = Typography;
 
 const list = [
-  { key: 'dashboard', value: 'ダッシュボード' },
-  { key: 'container', value: 'コンテナ' },
-  { key: 'truck', value: 'トラック' },
-  { key: 'daily', value: '作業日報' },
-  { key: 'clamping', value: '締め処理' },
-  { key: 'invoicing', value: '請求書発行' },
-  { key: 'payment', value: '支払書発行' },
-  { key: 'maintainer', value: 'マスタメンテ' },
-  { key: 'analysis', value: '車両・就労分析' },
-  { key: 'order', value: 'Web受注' }
+  { key: 'dashboard', value: 'Dashboard' },
+  { key: 'rent', value: 'Rent' },
+  { key: 'rentOut', value: 'Rent Out' },
+  { key: 'buy', value: 'Buy' },
+  { key: 'sell', value: 'Sell' },
+  { key: 'officeSpace', value: 'Office Space' },
+  { key: 'contact', value: 'Contact' },
+  { key: 'myList', value: 'My List' }
 ];
 
 const Header = ({ ...props }) => {
@@ -50,10 +48,10 @@ const Header = ({ ...props }) => {
           <Badge count={5} color="hsl(102, 70%, 61%)">
             <Button shape='circle' icon={<BellOutlined />} />
           </Badge>
-          <Button shape='circle' icon={<img src='./language.png' />} />
+          <Button shape='circle' icon={<img src='/language.png' />} />
           <Button shape="circle" icon={theme === 'light' ? <SunOutlined /> : <MoonOutlined />} onClick={toggleTheme} />
           <LogoMenu>
-            <Button icon={<Avatar src={'./user/man.png'} />} className='rounded-full' />
+            <Button icon={<Avatar src={'/user/man.jpg'} />} className='rounded-full' />
           </LogoMenu>
           <div className='2xl:hidden'>
             <Button onClick={showDrawer} icon={<MenuOutlined />} />
