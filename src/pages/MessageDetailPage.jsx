@@ -5,11 +5,11 @@ import dayjs from 'dayjs';
 
 const { Title } = Typography;
 
-const BuyPage = () => {
+const MessageDetailPage = () => {
   return (
     <div className='flex flex-col gap-0'>
     </div>
   )
 }
 
-export default BuyPage
+export default MessageDetailPage

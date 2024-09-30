@@ -9,7 +9,7 @@ const Private = () => {
   if(isValid) dispatch(setUser(tokenData.data));
   
   return (
-    isValid ? <Outlet/> : <Navigate to='/login'/>
+    isValid ? <Outlet/> : <Navigate to='/recipLogin'/>
   )
 }
 

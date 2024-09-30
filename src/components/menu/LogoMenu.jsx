@@ -13,7 +13,7 @@ const LogoMenu = ({ children }) => {
   const onLogOut = () => {
     localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
-    navigate('/login');
+    navigate('/recipLogin');
   }
   
   const items = [
