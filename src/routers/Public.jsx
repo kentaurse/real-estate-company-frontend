@@ -9,7 +9,7 @@ const Public = () => {
   if(isValid) dispatch(setUser(tokenData.data));
 
   return (
-    !isValid ? <Outlet/> : <Navigate to='/dashboard'/>
+    !isValid ? <Outlet/> : <Navigate to='/messages'/>
   )
 }
 

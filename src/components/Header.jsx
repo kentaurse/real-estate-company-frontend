@@ -37,13 +37,13 @@ const Header = ({ ...props }) => {
   return (
     <header className={props.className}>
       <div className='flex justify-between items-center h-full px-4 2xl:px-6 m-auto'>
-        <button className='flex-none' onClick={() => navigate('/dashboard')}>
+        <button className='flex-none' onClick={() => navigate('/messages')}>
           <img src='/logo.png' className='h-[40px]' />
         </button>
-        <Navbar list={list} className="h-full hidden 2xl:inline" />
+        {/* <Navbar list={list} className="h-full hidden 2xl:inline" />
         <div className='pr-2'>
           <Input placeholder='Type keywords...' prefix={<SearchOutlined />} suffix={<Text keyboard>Ctrl K</Text>} className='hidden sm:inline-flex rounded-full bg-transparent' />
-        </div>
+        </div> */}
         <div className='flex justify-center items-center gap-2'>
           <Badge count={5} color="hsl(102, 70%, 61%)">
             <Button shape='circle' icon={<BellOutlined />} />
@@ -53,9 +53,9 @@ const Header = ({ ...props }) => {
           <LogoMenu>
             <Button icon={<Avatar src={'/user/man.jpg'} />} className='rounded-full' />
           </LogoMenu>
-          <div className='2xl:hidden'>
+          {/* <div className='2xl:hidden'>
             <Button onClick={showDrawer} icon={<MenuOutlined />} />
-          </div>
+          </div> */}
         </div>
         <Drawer title="Menu" onClose={onClose} open={open}>
           <div className='flex flex-col gap-2 w-full'>

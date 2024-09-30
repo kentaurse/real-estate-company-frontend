@@ -11,7 +11,7 @@ const axiosSetting = () => {
       }
       if (error.response) {
         if(error.response.data === "Unauthorized") {
-          if(error.request.responseURL === `${process.env.REACT_API_BASE_URL}/login`){
+          if(error.request.responseURL === `${process.env.REACT_API_BASE_URL}/recipLogin`){
             Notification('Incorrect Password!', 'error');
           }else return error.response;
         }

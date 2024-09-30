@@ -7,7 +7,7 @@ const Error = () => {
   const error = useRouteError();
 
   const onDashboard = () => {
-    navigate('/dashboard');
+    navigate('/messages');
   }
   
   return (

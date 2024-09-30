@@ -8,26 +8,38 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
+    values['isUser'] ? values['role'] = "user" : values['role'] = "admin";
     const res = await axios.post("/register", values);
     if (res.status == 200) {
       Notification('Successful Register!');
-      navigate("/login");
+      navigate("/recipLogin");
+    }
+  };
+
+  const layout = {
+    labelCol: {
+      span: 6,
+    }
+  };
+
+  const itemLayout = {
+    labelCol: {
+      span: 8,
     }
   };
 
   return (
     <div className="w-full h-screen flex justify-center items-center p-2">
-      <Form className="w-full border border-border-100 p-2 max-w-[500px] rounded-2xl bg-bg-light-dark"
-        layout="vertical"
+      <Form className="w-full border border-border-100 p-2 max-w-[500px] rounded-2xl bg-bg-light-dark" {...layout}
         initialValues={{
-          remember: true
+          isUser: true
         }}
         onFinish={onFinish}
       >
         <div className="flex justify-center py-10">
           <img src="/logo.png" className="w-24" />
         </div>
-        <Form.Item label={"Name:"} name={'name'}
+        <Form.Item label={"名前:"} name={'name'}
           rules={[
             {
               required: true,
@@ -37,7 +49,17 @@ const RegisterPage = () => {
         >
           <Input prefix={<UserOutlined />} required />
         </Form.Item>
-        <Form.Item label={"Email:"} name={"email"}
+        <Form.Item label={"ログインID:"} name={'userId'}
+          rules={[
+            {
+              required: true,
+              message: 'Please input your UserId!',
+            }
+          ]}
+        >
+          <Input prefix={<UserOutlined />} required />
+        </Form.Item>
+        <Form.Item label={"メール:"} name={"email"}
           rules={[
             {
               type: 'email',
@@ -51,7 +73,22 @@ const RegisterPage = () => {
         >
           <Input prefix={<MailOutlined />} required />
         </Form.Item>
-        <Form.Item label={"Password:"} name={"password"}
+        <div className="flex justify-between items-center gap-4">
+          <Form.Item label={"関連ログインID:"} name={'relateUser'} className="flex-grow" {...itemLayout}
+            rules={[
+              {
+                required: true,
+                message: 'Please input your Relate User!',
+              }
+            ]}
+          >
+            <Input prefix={<UserOutlined />} required />
+          </Form.Item>
+          <Form.Item name="isUser" valuePropName="checked" className="">
+            <Checkbox>ユーザー?</Checkbox>
+          </Form.Item>
+        </div>
+        <Form.Item label={"パスワード:"} name={"password"}
           rules={[
             {
               required: true,
@@ -61,7 +98,7 @@ const RegisterPage = () => {
         >
           <Input.Password prefix={<KeyOutlined />} required />
         </Form.Item>
-        <Form.Item label={"Confirm Password:"} name={"confirm"}
+        <Form.Item label={"確認する:"} name={"confirm"}
           dependencies={['password']}
           rules={[
             {
@@ -80,22 +117,9 @@ const RegisterPage = () => {
         >
           <Input.Password prefix={<KeyOutlined />} required />
         </Form.Item>
-        <div className="flex justify-between px-2">
-          <Form.Item name="remember" valuePropName="checked">
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-          <Form.Item name="forget">
-            <Button type="link">Forget Password？</Button>
-          </Form.Item>
-        </div>
         <div className="flex justify-evenly pt-4 pb-10">
-          <Form.Item name="login">
-            <Button type="link" className="border-none" onClick={() => navigate("/login")}>
-              Already registered?
-            </Button>
-          </Form.Item>
           <Form.Item name="register">
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" className="w-[280px]">
               登録
             </Button>
           </Form.Item>
