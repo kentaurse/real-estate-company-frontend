@@ -8,7 +8,7 @@ import { MdOutlineLogout } from "react-icons/md";
 
 const LogoMenu = ({ children }) => {
   const navigate = useNavigate();
-  const { userName, userEmail } = useSelector(state => state.user);
+  const { userInfo } = useSelector(state => state.user);
 
   const onLogOut = () => {
     localStorage.removeItem('token');
@@ -22,8 +22,8 @@ const LogoMenu = ({ children }) => {
       label: (
         <div className='px-5'>
           <div className='flex flex-col justify-start'>
-            <div>{userName}</div>
-            <div className='text-[#6d6d6d]'>{userEmail}</div>
+            <div>{userInfo?.name}</div>
+            <div className='text-[#6d6d6d]'>{userInfo?.userId}</div>
           </div>
         </div>
       ) 
