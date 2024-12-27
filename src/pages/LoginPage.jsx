@@ -1,10 +1,12 @@
 import React from "react";
-import { Button, Checkbox, Form, Input, Typography } from "antd";
+import { Button, Checkbox, Form, Input, Typography, Space } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import axios from "axios";
 import { setUser } from "../redux/slices/UserSlice";
-import { MailOutlined, KeyOutlined } from '@ant-design/icons';
+import { MailOutlined, KeyOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
+const { Search } = Input;
 
 const { Title } = Typography;
 
@@ -24,19 +26,18 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="w-full h-screen flex justify-center items-center p-2">
-      <Form className="w-full border border-border-100 p-2 max-w-[500px] rounded-2xl bg-bg-light-dark"
+    <div className="w-full h-screen flex justify-center items-center">
+      <Form className="w-full border border-border-100 p-14 max-w-[500px] rounded-2xl bg-bg-light-dark"
         initialValues={{
-          userId: "satomichru",
-          password: '123456',
+          userId: "",
+          password: '',
         }}
         onFinish={onFinish}
       >
-        <div className="flex flex-col justify-center items-center py-5">
-          <img src="/logo.png" className="w-24 pb-2" />
-          <Title>プッシュ通知システム</Title>
+        <div className="flex flex-col py-4">
+          <Title>ログイン</Title>
         </div>
-        <Form.Item label={"ログインID:"} name={"userId"}
+        <Form.Item name={"userId"}
           rules={[
             {
               required: true,
@@ -44,9 +45,11 @@ const LoginPage = () => {
             }
           ]}
         >
-          <Input prefix={<MailOutlined />} required />
+          <Space.Compact size="large" className="w-full">
+            <Input addonBefore={<UserOutlined />} placeholder="ユーザーネーム" required  className="w-full"/>
+          </Space.Compact>
         </Form.Item>
-        <Form.Item label={"パスワード:"} name={"password"}
+        <Form.Item name={"password"}
           rules={[
             {
               required: true,
@@ -54,19 +57,13 @@ const LoginPage = () => {
             },
           ]}
         >
-          <Input.Password prefix={<KeyOutlined />} required />
+          <Space.Compact size="large" className="w-full">
+            <Input.Password addonBefore={<LockOutlined />} placeholder="パスワード" required  className="w-full"/>
+          </Space.Compact>
         </Form.Item>
-        {/* <div className="flex justify-between px-2">
-          <Form.Item name="remember" valuePropName="checked">
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-          <Form.Item name="forget">
-            <Button type="link">Forget Password？</Button>
-          </Form.Item>
-        </div> */}
-        <div className="flex justify-evenly pt-4 pb-10">
+        <div className="flex pt-4">
           <Form.Item name="login">
-            <Button type="primary" htmlType="submit" className="w-[280px]">ログイン</Button>
+            <Button type="primary" htmlType="submit" className="w-[130px] h-[45px]">ログイン</Button>
           </Form.Item>
         </div>
       </Form>
