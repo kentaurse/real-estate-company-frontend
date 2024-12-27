@@ -15,8 +15,7 @@ import Private from 'src/routers/Private';
 import Error from 'src/components/Error';
 import LoginPage from 'src/pages/LoginPage';
 import RegisterPage from 'src/pages/RegisterPage';
-import MessagesPage from 'src/pages/MessagesPage';
-import MessageDetailPage from 'src/pages/MessageDetailPage';
+import DashboardPage from 'src/pages/DashboardPage';
 
 axios.defaults.baseURL = process.env.REACT_API_BASE_URL;
 
@@ -29,20 +28,18 @@ const AppRouter = () => {
             const tokenData = await tokenLogin();
             return { tokenData };
           }}>
-            <Route path="/" loader={() => redirect('/messages')} />
-            <Route path="/messages" element={<MessagesPage />} />
-            <Route path="/messages/:msgId" element={<MessageDetailPage />} />
+            <Route path="/" loader={() => redirect('/dashboard')} />
+            <Route path="/dashboard" element={<DashboardPage />} />
           </Route>
         </Route>
         <Route element={<Public />} errorElement={<Error />} loader={async () => {
           const tokenData = await tokenLogin();
           return { tokenData };
         }}>
-          <Route path="/senderLogin" element={<LoginPage />} />
-          <Route path="/recipLogin" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
-        {/* <Route path="*" loader={() => redirect('/login')} /> */}
+        <Route path="*" loader={() => redirect('/login')} />
       </>
     )
   );
