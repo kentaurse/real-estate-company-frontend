@@ -1,12 +1,10 @@
 import React from "react";
-import { Button, Checkbox, Form, Input, Typography, Space } from "antd";
+import { Button, Form, Input, Typography, Space } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import axios from "axios";
 import { setUser } from "../redux/slices/UserSlice";
-import { MailOutlined, KeyOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
-import { SearchOutlined } from '@ant-design/icons';
-const { Search } = Input;
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 
@@ -14,8 +12,6 @@ const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(location.pathname);
-  // "/recipLogin"   "/senderLogin"
   const onFinish = async (values) => {
     const res = await axios.post('/login', values);
     localStorage.setItem('token', res.data.token);
@@ -28,10 +24,10 @@ const LoginPage = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <Form className="w-full border border-border-100 p-14 max-w-[500px] rounded-2xl bg-bg-light-dark"
-        initialValues={{
-          userId: "",
-          password: '',
-        }}
+        // initialValues={{
+        //   userId: "",
+        //   password: '',
+        // }}
         onFinish={onFinish}
       >
         <div className="flex flex-col py-4">
